@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>nyx-api browser example</title>
+</head>
+<body>
+<h2>nyx-api browser example</h2>
+<ul>
+  <li>disable CORS check!</li>
+</ul>
+<div id="result"></div>
+<script type="module">
+  import NyxApi from '../dist/bundle.browser.min.js'
+
+  const initNyx = async () => {
+    const nyx = new NyxApi({
+      appName: 'test'
+    })
+    const username = prompt('username')
+    const { confirmationCode, token, error, message } = await nyx.createAuthToken(username)
+    if (confirmationCode && token) {
+      alert(`confirmation code: ${confirmationCode}.\n\nconfirm in Nyx settings and click ok`)
+    } else if (error && message) {
+      alert(`error: ${message}`)
+      return
+    }
+    const res = await nyx.getHistory()
+    if (res?.discussions?.length) {
+      document.getElementById('result').innerHTML = `${
+        res.discussions.map(d => `<div>${d.full_name}</div>`).join('')
+      }`
+    }
+  }
+
+  initNyx()
+</script>
+</body>
+</html>
