@@ -1,8 +1,21 @@
 # nyx-api
 
+Library for basic communication with Nyx.cz API
+
 ---
 
-Library for basic communication with Nyx.cz API
+### Install
+
+```
+yarn add nyx-api
+```
+
+or
+
+```
+npm i nyx-api
+```
+
 ### Browser / React-Native / Cordova / ...
 
 * Nyx doesn't allow cross origin resource sharing, so you need to disable CORS browser check, if you want to test this in actual browser
