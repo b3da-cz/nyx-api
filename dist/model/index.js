@@ -27,6 +27,7 @@ __exportStar(require("./MailPost"), exports);
 __exportStar(require("./Notification"), exports);
 __exportStar(require("./NyxInit"), exports);
 __exportStar(require("./Post"), exports);
+__exportStar(require("./Rating"), exports);
 __exportStar(require("./Reminder"), exports);
 __exportStar(require("./Response"), exports);
 __exportStar(require("./UploadedFile"), exports);

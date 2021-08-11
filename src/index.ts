@@ -18,6 +18,7 @@ export type {
   Notification,
   NyxInit,
   Post,
+  Rating,
   Reminder,
   Response,
   UploadedFile,

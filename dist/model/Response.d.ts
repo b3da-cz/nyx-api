@@ -1,4 +1,4 @@
-import { Bookmark, BookmarkCategory, Context, Discussion, DiscussionDetail, Domain, MailConversation, MailPost, Notification, Post, Reminder, UploadedFile, User } from './';
+import { Bookmark, BookmarkCategory, Context, Discussion, DiscussionDetail, Domain, MailConversation, MailPost, Notification, Post, Rating, Reminder, UploadedFile, User } from './';
 export declare type Response = {
     bookmarks?: Bookmark[];
     code?: string;
@@ -54,7 +54,7 @@ export declare type NotificationsResponse = {
     context: Context;
     notifications: Notification[];
 } & ErrorResponse;
-export declare type RatingsResponse = Post[] & ErrorResponse;
+export declare type RatingsResponse = Rating[] & ErrorResponse;
 export declare type RemindersResponse = {
     context: Context;
     posts: Array<Post | MailPost>;

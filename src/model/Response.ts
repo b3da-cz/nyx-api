@@ -9,6 +9,7 @@ import {
   MailPost,
   Notification,
   Post,
+  Rating,
   Reminder,
   UploadedFile,
   User,
@@ -80,7 +81,7 @@ export type NotificationsResponse = {
   notifications: Notification[]
 } & ErrorResponse
 
-export type RatingsResponse = Post[] & ErrorResponse
+export type RatingsResponse = Rating[] & ErrorResponse
 
 export type RemindersResponse = {
   context: Context

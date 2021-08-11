@@ -51,7 +51,7 @@ const nyx = new NyxApi({
     appName: 'test',
     auth: {
         username: 'foo',
-        token: 'bar,',
+        token: 'bar',
     }
 })
 ```
@@ -59,7 +59,7 @@ or set Auth object later:
 ```ts
 const auth: Auth = {
   username: 'foo',
-  token: 'bar,',
+  token: 'bar',
 }
 nyx.setAuth(auth)
 ```

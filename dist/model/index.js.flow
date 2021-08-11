@@ -21,6 +21,7 @@ declare export * from "./MailPost";
 declare export * from "./Notification";
 declare export * from "./NyxInit";
 declare export * from "./Post";
+declare export * from "./Rating";
 declare export * from "./Reminder";
 declare export * from "./Response";
 declare export * from "./UploadedFile";

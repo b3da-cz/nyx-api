@@ -15,6 +15,7 @@ export * from './MailPost';
 export * from './Notification';
 export * from './NyxInit';
 export * from './Post';
+export * from './Rating';
 export * from './Reminder';
 export * from './Response';
 export * from './UploadedFile';
