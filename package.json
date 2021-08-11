@@ -1,6 +1,6 @@
 {
   "name": "nyx-api",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Javascript library for basic communication with Nyx.cz API",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
