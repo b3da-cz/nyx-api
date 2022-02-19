@@ -212,6 +212,14 @@ export class NyxApi extends Http {
     })
   }
 
+  async sendTypingNotification(recipient: string): Promise<Partial<NyxResponse>> {
+    return this.fetch({
+      endpoint: `mail/typing_notification/${recipient}`,
+      method: Http.POST,
+      headers: this.getHeaders('application/x-www-form-urlencoded'),
+    })
+  }
+
   async bookmarkDiscussion(
     discussionId: string | number,
     isBooked: boolean,
