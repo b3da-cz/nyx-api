@@ -1,6 +1,6 @@
 export type ContentRawPoll = {
   data: {
-    allowed_votes: 1
+    allowed_votes: number
     answers: [{ answer: string }]
     computed_values: {
       can_modify: boolean

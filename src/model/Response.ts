@@ -120,4 +120,4 @@ export type UploadFileResponse = UploadedFile & ErrorResponse
 
 export type WaitingFilesResponse = {
   waiting_files: UploadedFile[]
-}
+} & ErrorResponse

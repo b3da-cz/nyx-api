@@ -85,4 +85,4 @@ export declare type SearchResponse = SearchUserResponse & SearchUnifiedResponse 
 export declare type UploadFileResponse = UploadedFile & ErrorResponse;
 export declare type WaitingFilesResponse = {
     waiting_files: UploadedFile[];
-};
+} & ErrorResponse;

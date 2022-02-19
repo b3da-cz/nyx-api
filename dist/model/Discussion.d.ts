@@ -3,7 +3,7 @@ import { Header } from './Header';
 import { Post } from './Post';
 export declare type Discussion = {
     discussion_common: {
-        advertisement_specific_data: {
+        advertisement_specific_data?: {
             advertisement: any;
             attachments: any[];
         };
@@ -17,7 +17,7 @@ export declare type Discussion = {
         };
         discussion: DiscussionDetail;
         discussion_specific_data: {
-            header: Header[];
+            header?: Header[];
         };
         waiting_files: any[];
     };
