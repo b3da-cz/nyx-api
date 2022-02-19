@@ -87,6 +87,9 @@ declare export class NyxApi mixins Http {
     recipient: string,
     message: string
   ): Promise<$Rest<NyxResponse, { ... }>>;
+  sendTypingNotification(
+    recipient: string
+  ): Promise<$Rest<NyxResponse, { ... }>>;
   bookmarkDiscussion(
     discussionId: string | number,
     isBooked: boolean,

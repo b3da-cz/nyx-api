@@ -207,6 +207,15 @@ class NyxApi extends Http_1.Http {
             });
         });
     }
+    sendTypingNotification(recipient) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return this.fetch({
+                endpoint: `mail/typing_notification/${recipient}`,
+                method: Http_1.Http.POST,
+                headers: this.getHeaders('application/x-www-form-urlencoded'),
+            });
+        });
+    }
     bookmarkDiscussion(discussionId, isBooked, categoryId) {
         return __awaiter(this, void 0, void 0, function* () {
             return this.fetch({

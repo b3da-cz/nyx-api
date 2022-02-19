@@ -26,6 +26,7 @@ export declare class NyxApi extends Http {
     setReminder(discussionId: string | number, postId: string | number, isReminder: boolean): Promise<Partial<OnPostUpdatedResponse>>;
     reportPost(postId: string | number): Promise<Partial<NyxResponse>>;
     sendPrivateMessage(recipient: string, message: string): Promise<Partial<NyxResponse>>;
+    sendTypingNotification(recipient: string): Promise<Partial<NyxResponse>>;
     bookmarkDiscussion(discussionId: string | number, isBooked: boolean, categoryId?: number): Promise<Partial<NyxResponse>>;
     rollDice(discussionId: string | number, postId: string | number): Promise<Partial<OnPostUpdatedResponse>>;
     rollDiceInHeader(discussionId: string | number, contentId: string | number): Promise<Partial<OnPostUpdatedResponse>>;
