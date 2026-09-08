@@ -3,6 +3,7 @@ export declare type Bookmark = {
     full_name: string;
     is_owner?: boolean;
     last_visited_at?: string;
+    last_seen_post_id?: number;
     new_posts_count?: number;
     new_replies_count?: number;
     new_links_count?: number;
