@@ -317,5 +317,104 @@ class NyxApi extends Http_1.Http {
             });
         });
     }
+    getNotepad() {
+        return __awaiter(this, void 0, void 0, function* () {
+            return this.fetch({
+                endpoint: `notepad`,
+                method: Http_1.Http.GET,
+            });
+        });
+    }
+    getNotepadEntry(entryId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return this.fetch({
+                endpoint: `notepad/${entryId}`,
+                method: Http_1.Http.GET,
+            });
+        });
+    }
+    removeBookmarksFromHistory(discussionIds) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return this.fetch({
+                endpoint: `bookmarks/history/remove_from_history`,
+                method: Http_1.Http.POST,
+                headers: this.getHeaders('application/x-www-form-urlencoded'),
+                body: discussionIds.map(id => `discussion_ids[]=${encodeURIComponent(id)}`).join('&'),
+            });
+        });
+    }
+    markBookmarksHistoryAsRead(discussionIds) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return this.fetch({
+                endpoint: `bookmarks/history/mark_as_read`,
+                method: Http_1.Http.POST,
+                headers: this.getHeaders('application/x-www-form-urlencoded'),
+                body: discussionIds.map(id => `discussion_ids[]=${encodeURIComponent(id)}`).join('&'),
+            });
+        });
+    }
+    addDiscussionRights(discussionId, username) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return this.fetch({
+                endpoint: `discussion/rights/add?discussion_id=${discussionId}&username=${encodeURIComponent(username)}`,
+                method: Http_1.Http.POST,
+            });
+        });
+    }
+    deleteDiscussionRights(discussionId, username) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return this.fetch({
+                endpoint: `discussion/rights?discussion_id=${discussionId}&username=${encodeURIComponent(username)}`,
+                method: Http_1.Http.DELETE,
+            });
+        });
+    }
+    setDiscussionRight(discussionId, right, set, username) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return this.fetch({
+                endpoint: `discussion/rights?discussion_id=${discussionId}&right=${right}&set=${set}${username ? `&username=${encodeURIComponent(username)}` : ''}`,
+                method: Http_1.Http.POST,
+            });
+        });
+    }
+    saveDiscussionContent(discussionId, contentId, content, format = 'html') {
+        return __awaiter(this, void 0, void 0, function* () {
+            const data = { content, format };
+            return this.fetch({
+                endpoint: `discussion/${discussionId}/content/${contentId}/save`,
+                method: Http_1.Http.POST,
+                headers: this.getHeaders('application/x-www-form-urlencoded'),
+                body: Object.keys(data)
+                    .map(key => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
+                    .join('&'),
+            });
+        });
+    }
+    setFileEmbed(fileId, isEmbed) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return this.fetch({
+                endpoint: `file/embed/${fileId}/${isEmbed}`,
+                method: Http_1.Http.POST,
+            });
+        });
+    }
+    searchV2(params) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const queryParts = [];
+            if (params.user)
+                queryParts.push(`user=${encodeURIComponent(params.user)}`);
+            if (params.text)
+                queryParts.push(`text=${encodeURIComponent(params.text)}`);
+            if (params.order)
+                queryParts.push(`order=${encodeURIComponent(params.order)}`);
+            if (params.fromId)
+                queryParts.push(`from_id=${params.fromId}`);
+            const qs = queryParts.length > 0 ? `?${queryParts.join('&')}` : '';
+            return this.fetch({
+                endpoint: `search-v2${qs}`,
+                method: Http_1.Http.GET,
+            });
+        });
+    }
 }
 exports.NyxApi = NyxApi;

@@ -3,16 +3,23 @@ import {
   BookmarkCategory,
   Context,
   Discussion,
+  DiscussionAccessRight,
   DiscussionDetail,
+  DiscussionGlobalRights,
   Domain,
+  LastIgnoredDiscussionsWithName,
   MailConversation,
   MailPost,
+  NotepadData,
+  NotepadEntry,
   Notification,
   Post,
   Rating,
   Reminder,
+  UnifiedSearchRowDiscussion,
   UploadedFile,
   User,
+  UsernameSearchResultRow,
 } from './'
 
 export type Response = {
@@ -50,6 +57,8 @@ export type DiscussionStatsResponse = {
   visits: any[]
 } & ErrorResponse
 
+export type DiscussionAccessRightResponse = (DiscussionAccessRight | DiscussionGlobalRights) & ErrorResponse
+
 export type HistoryResponse = {
   context: Context
   discussions: Bookmark[]
@@ -64,7 +73,7 @@ export type LastDiscussionsResponse = {
 export type LastPostsResponse = {
   context: Context
   posts: Post[]
-  ignored_discussions: any[] // todo type, Bookmark?
+  ignored_discussions: LastIgnoredDiscussionsWithName[]
   ignored_domains: Domain[]
 } & ErrorResponse
 
@@ -75,6 +84,10 @@ export type MailResponse = {
   reminders: Reminder[]
   waiting_files: UploadedFile[]
 } & ErrorResponse
+
+export type NotepadResponse = NotepadData & ErrorResponse
+
+export type NotepadEntryResponse = NotepadEntry & ErrorResponse
 
 export type NotificationsResponse = {
   context: Context
@@ -91,21 +104,21 @@ export type RemindersResponse = {
 export type OnPostUpdatedResponse = Post & ErrorResponse // on rating, poll vote, roll dice
 
 export type SearchUserResponse = {
-  exact: User[]
-  friends: User[]
-  others: User[]
+  exact: User[] | UsernameSearchResultRow[]
+  friends: User[] | UsernameSearchResultRow[]
+  others: User[] | UsernameSearchResultRow[]
 } & ErrorResponse
 
 export type SearchUnifiedResponse = {
   discussion: {
-    advertisements: Post[]
-    discussions: DiscussionDetail[]
-    events: any[]
+    advertisements: UnifiedSearchRowDiscussion[] | Post[]
+    discussions: UnifiedSearchRowDiscussion[] | DiscussionDetail[]
+    events: UnifiedSearchRowDiscussion[]
   }
   user: {
-    exact: User[]
-    friends: User[]
-    others: User[]
+    exact: User[] | UsernameSearchResultRow[]
+    friends: User[] | UsernameSearchResultRow[]
+    others: User[] | UsernameSearchResultRow[]
   }
 } & ErrorResponse
 

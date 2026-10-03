@@ -1,0 +1,23 @@
+import { DiscussionSpecificAdvertisement } from './DiscussionSpecificAdvertisement'
+import { AttendanceType, EventAttendee } from './EventAttendee'
+import { Event } from './Event'
+import { EventsArea } from './EventsArea'
+import { Header } from './Header'
+import { UploadedFile } from './UploadedFile'
+
+export type DiscussionSpecificDiscussion = {
+  header?: Header[]
+}
+
+export type DiscussionSpecificEvent = {
+  event: Event
+  area?: EventsArea
+  attachments?: UploadedFile[]
+  attendees?: EventAttendee[]
+  my_attendance?: AttendanceType
+}
+
+export type DiscussionSpecific =
+  | DiscussionSpecificDiscussion
+  | DiscussionSpecificEvent
+  | DiscussionSpecificAdvertisement

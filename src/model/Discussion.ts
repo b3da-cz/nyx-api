@@ -1,17 +1,18 @@
+import { DiscussionAccessRight } from './AccessRight'
 import { DiscussionDetail } from './DiscussionDetail'
+import { DiscussionSpecificAdvertisement } from './DiscussionSpecificAdvertisement'
 import { Event } from './Event'
 import { AttendanceType, EventAttendee } from './EventAttendee'
 import { EventsArea } from './EventsArea'
 import { Header } from './Header'
 import { Post } from './Post'
 import { UploadedFile } from './UploadedFile'
+import { UserDiscussionOwner } from './UserSearch'
 
 export type Discussion = {
   discussion_common: {
-    advertisement_specific_data?: {
-      advertisement: any
-      attachments: any[]
-    }
+    access_right?: DiscussionAccessRight | null
+    advertisement_specific_data?: DiscussionSpecificAdvertisement
     bookmark: {
       // can't use Bookmark here, because wtf
       bookmark: boolean
@@ -32,6 +33,7 @@ export type Discussion = {
       attendees?: EventAttendee[]
       my_attendance?: AttendanceType
     }
+    owner?: UserDiscussionOwner
     waiting_files: any[]
   }
   posts: Post[]

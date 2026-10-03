@@ -1,16 +1,17 @@
+import { DiscussionAccessRight } from './AccessRight';
 import { DiscussionDetail } from './DiscussionDetail';
+import { DiscussionSpecificAdvertisement } from './DiscussionSpecificAdvertisement';
 import { Event } from './Event';
 import { AttendanceType, EventAttendee } from './EventAttendee';
 import { EventsArea } from './EventsArea';
 import { Header } from './Header';
 import { Post } from './Post';
 import { UploadedFile } from './UploadedFile';
+import { UserDiscussionOwner } from './UserSearch';
 export declare type Discussion = {
     discussion_common: {
-        advertisement_specific_data?: {
-            advertisement: any;
-            attachments: any[];
-        };
+        access_right?: DiscussionAccessRight | null;
+        advertisement_specific_data?: DiscussionSpecificAdvertisement;
         bookmark: {
             bookmark: boolean;
             category_id: number;
@@ -30,6 +31,7 @@ export declare type Discussion = {
             attendees?: EventAttendee[];
             my_attendance?: AttendanceType;
         };
+        owner?: UserDiscussionOwner;
         waiting_files: any[];
     };
     posts: Post[];

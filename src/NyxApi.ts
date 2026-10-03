@@ -1,14 +1,20 @@
 import { Http } from './Http'
 import {
+  AccessRightType,
+  ApiNavigationDirection,
   Auth,
   BookmarksResponse,
+  ContentFormatEnum,
   Context,
+  DiscussionAccessRightResponse,
   DiscussionResponse,
   DiscussionStatsResponse,
   HistoryResponse,
   LastDiscussionsResponse,
   LastPostsResponse,
   MailResponse,
+  NotepadEntryResponse,
+  NotepadResponse,
   NotificationsResponse,
   NyxInit,
   OnPostUpdatedResponse,
@@ -17,6 +23,7 @@ import {
   RemindersResponse,
   Response as NyxResponse,
   SearchResponse,
+  SearchTextResponse,
   UploadFileResponse,
   WaitingFilesResponse,
 } from './model'
@@ -324,6 +331,108 @@ export class NyxApi extends Http {
     return this.fetch({
       endpoint: `deregister_notifications/${this.auth.token}/${appIdentifier}/${fcmToken}`,
       method: Http.POST,
+    })
+  }
+
+  async getNotepad(): Promise<Partial<NotepadResponse>> {
+    return this.fetch({
+      endpoint: `notepad`,
+      method: Http.GET,
+    })
+  }
+
+  async getNotepadEntry(entryId: string | number): Promise<Partial<NotepadEntryResponse>> {
+    return this.fetch({
+      endpoint: `notepad/${entryId}`,
+      method: Http.GET,
+    })
+  }
+
+  async removeBookmarksFromHistory(discussionIds: number[]): Promise<Partial<NyxResponse>> {
+    return this.fetch({
+      endpoint: `bookmarks/history/remove_from_history`,
+      method: Http.POST,
+      headers: this.getHeaders('application/x-www-form-urlencoded'),
+      body: discussionIds.map(id => `discussion_ids[]=${encodeURIComponent(id)}`).join('&'),
+    })
+  }
+
+  async markBookmarksHistoryAsRead(discussionIds: number[]): Promise<Partial<NyxResponse>> {
+    return this.fetch({
+      endpoint: `bookmarks/history/mark_as_read`,
+      method: Http.POST,
+      headers: this.getHeaders('application/x-www-form-urlencoded'),
+      body: discussionIds.map(id => `discussion_ids[]=${encodeURIComponent(id)}`).join('&'),
+    })
+  }
+
+  async addDiscussionRights(discussionId: string | number, username: string): Promise<Partial<NyxResponse>> {
+    return this.fetch({
+      endpoint: `discussion/rights/add?discussion_id=${discussionId}&username=${encodeURIComponent(username)}`,
+      method: Http.POST,
+    })
+  }
+
+  async deleteDiscussionRights(discussionId: string | number, username: string): Promise<Partial<NyxResponse>> {
+    return this.fetch({
+      endpoint: `discussion/rights?discussion_id=${discussionId}&username=${encodeURIComponent(username)}`,
+      method: Http.DELETE,
+    })
+  }
+
+  async setDiscussionRight(
+    discussionId: string | number,
+    right: AccessRightType,
+    set: boolean,
+    username?: string,
+  ): Promise<Partial<DiscussionAccessRightResponse>> {
+    return this.fetch({
+      endpoint: `discussion/rights?discussion_id=${discussionId}&right=${right}&set=${set}${
+        username ? `&username=${encodeURIComponent(username)}` : ''
+      }`,
+      method: Http.POST,
+    })
+  }
+
+  async saveDiscussionContent(
+    discussionId: string | number,
+    contentId: string | number,
+    content: string,
+    format: ContentFormatEnum = 'html',
+  ): Promise<Partial<NyxResponse>> {
+    const data: any = { content, format }
+    return this.fetch({
+      endpoint: `discussion/${discussionId}/content/${contentId}/save`,
+      method: Http.POST,
+      headers: this.getHeaders('application/x-www-form-urlencoded'),
+      body: Object.keys(data)
+        .map(key => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
+        .join('&'),
+    })
+  }
+
+  async setFileEmbed(fileId: string | number, isEmbed: boolean): Promise<Partial<NyxResponse>> {
+    return this.fetch({
+      endpoint: `file/embed/${fileId}/${isEmbed}`,
+      method: Http.POST,
+    })
+  }
+
+  async searchV2(params: {
+    user?: string
+    text?: string
+    order?: ApiNavigationDirection
+    fromId?: number
+  }): Promise<Partial<SearchTextResponse>> {
+    const queryParts: string[] = []
+    if (params.user) queryParts.push(`user=${encodeURIComponent(params.user)}`)
+    if (params.text) queryParts.push(`text=${encodeURIComponent(params.text)}`)
+    if (params.order) queryParts.push(`order=${encodeURIComponent(params.order)}`)
+    if (params.fromId) queryParts.push(`from_id=${params.fromId}`)
+    const qs = queryParts.length > 0 ? `?${queryParts.join('&')}` : ''
+    return this.fetch({
+      endpoint: `search-v2${qs}`,
+      method: Http.GET,
     })
   }
 }

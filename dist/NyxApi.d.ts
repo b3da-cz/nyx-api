@@ -1,5 +1,5 @@
 import { Http } from './Http';
-import { Auth, BookmarksResponse, Context, DiscussionResponse, DiscussionStatsResponse, HistoryResponse, LastDiscussionsResponse, LastPostsResponse, MailResponse, NotificationsResponse, NyxInit, OnPostUpdatedResponse, Post, RatingsResponse, RemindersResponse, Response as NyxResponse, SearchResponse, UploadFileResponse, WaitingFilesResponse } from './model';
+import { AccessRightType, ApiNavigationDirection, Auth, BookmarksResponse, ContentFormatEnum, Context, DiscussionAccessRightResponse, DiscussionResponse, DiscussionStatsResponse, HistoryResponse, LastDiscussionsResponse, LastPostsResponse, MailResponse, NotepadEntryResponse, NotepadResponse, NotificationsResponse, NyxInit, OnPostUpdatedResponse, Post, RatingsResponse, RemindersResponse, Response as NyxResponse, SearchResponse, SearchTextResponse, UploadFileResponse, WaitingFilesResponse } from './model';
 export declare class NyxApi extends Http {
     constructor(data: NyxInit);
     /**
@@ -38,4 +38,19 @@ export declare class NyxApi extends Http {
     deleteFile(fileId: string | number): Promise<Partial<NyxResponse>>;
     subscribeForFCM(fcmToken: string, appIdentifier: string): Promise<Partial<NyxResponse>>;
     unregisterFromFCM(fcmToken: string, appIdentifier: string): Promise<Partial<NyxResponse>>;
+    getNotepad(): Promise<Partial<NotepadResponse>>;
+    getNotepadEntry(entryId: string | number): Promise<Partial<NotepadEntryResponse>>;
+    removeBookmarksFromHistory(discussionIds: number[]): Promise<Partial<NyxResponse>>;
+    markBookmarksHistoryAsRead(discussionIds: number[]): Promise<Partial<NyxResponse>>;
+    addDiscussionRights(discussionId: string | number, username: string): Promise<Partial<NyxResponse>>;
+    deleteDiscussionRights(discussionId: string | number, username: string): Promise<Partial<NyxResponse>>;
+    setDiscussionRight(discussionId: string | number, right: AccessRightType, set: boolean, username?: string): Promise<Partial<DiscussionAccessRightResponse>>;
+    saveDiscussionContent(discussionId: string | number, contentId: string | number, content: string, format?: ContentFormatEnum): Promise<Partial<NyxResponse>>;
+    setFileEmbed(fileId: string | number, isEmbed: boolean): Promise<Partial<NyxResponse>>;
+    searchV2(params: {
+        user?: string;
+        text?: string;
+        order?: ApiNavigationDirection;
+        fromId?: number;
+    }): Promise<Partial<SearchTextResponse>>;
 }

@@ -1,4 +1,4 @@
-import { Bookmark, BookmarkCategory, Context, Discussion, DiscussionDetail, Domain, MailConversation, MailPost, Notification, Post, Rating, Reminder, UploadedFile, User } from './';
+import { Bookmark, BookmarkCategory, Context, Discussion, DiscussionAccessRight, DiscussionDetail, DiscussionGlobalRights, Domain, LastIgnoredDiscussionsWithName, MailConversation, MailPost, NotepadData, NotepadEntry, Notification, Post, Rating, Reminder, UnifiedSearchRowDiscussion, UploadedFile, User, UsernameSearchResultRow } from './';
 export declare type Response = {
     bookmarks?: Bookmark[];
     code?: string;
@@ -28,6 +28,7 @@ export declare type DiscussionResponse = Discussion & DiscussionRepliesResponse 
 export declare type DiscussionStatsResponse = {
     visits: any[];
 } & ErrorResponse;
+export declare type DiscussionAccessRightResponse = (DiscussionAccessRight | DiscussionGlobalRights) & ErrorResponse;
 export declare type HistoryResponse = {
     context: Context;
     discussions: Bookmark[];
@@ -40,7 +41,7 @@ export declare type LastDiscussionsResponse = {
 export declare type LastPostsResponse = {
     context: Context;
     posts: Post[];
-    ignored_discussions: any[];
+    ignored_discussions: LastIgnoredDiscussionsWithName[];
     ignored_domains: Domain[];
 } & ErrorResponse;
 export declare type MailResponse = {
@@ -50,6 +51,8 @@ export declare type MailResponse = {
     reminders: Reminder[];
     waiting_files: UploadedFile[];
 } & ErrorResponse;
+export declare type NotepadResponse = NotepadData & ErrorResponse;
+export declare type NotepadEntryResponse = NotepadEntry & ErrorResponse;
 export declare type NotificationsResponse = {
     context: Context;
     notifications: Notification[];
@@ -61,20 +64,20 @@ export declare type RemindersResponse = {
 } & ErrorResponse;
 export declare type OnPostUpdatedResponse = Post & ErrorResponse;
 export declare type SearchUserResponse = {
-    exact: User[];
-    friends: User[];
-    others: User[];
+    exact: User[] | UsernameSearchResultRow[];
+    friends: User[] | UsernameSearchResultRow[];
+    others: User[] | UsernameSearchResultRow[];
 } & ErrorResponse;
 export declare type SearchUnifiedResponse = {
     discussion: {
-        advertisements: Post[];
-        discussions: DiscussionDetail[];
-        events: any[];
+        advertisements: UnifiedSearchRowDiscussion[] | Post[];
+        discussions: UnifiedSearchRowDiscussion[] | DiscussionDetail[];
+        events: UnifiedSearchRowDiscussion[];
     };
     user: {
-        exact: User[];
-        friends: User[];
-        others: User[];
+        exact: User[] | UsernameSearchResultRow[];
+        friends: User[] | UsernameSearchResultRow[];
+        others: User[] | UsernameSearchResultRow[];
     };
 } & ErrorResponse;
 export declare type SearchTextResponse = {
