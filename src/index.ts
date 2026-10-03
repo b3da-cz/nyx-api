@@ -1,15 +1,21 @@
 import { NyxApi } from './NyxApi'
 
 export type {
+  AttendanceType,
+  AttendanceTypeEnum,
   Auth,
   Bookmark,
   BookmarkCategory,
   ContentRawDice,
   ContentRawPoll,
   Context,
+  DateRange,
   Discussion,
   DiscussionDetail,
   Domain,
+  Event,
+  EventAttendee,
+  EventsArea,
   FetchInit,
   Fn,
   Header,
