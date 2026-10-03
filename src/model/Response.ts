@@ -7,6 +7,10 @@ import {
   DiscussionDetail,
   DiscussionGlobalRights,
   Domain,
+  EventArea,
+  EventCalendarDay,
+  EventCategory,
+  EventListItem,
   LastIgnoredDiscussionsWithName,
   MailConversation,
   MailPost,
@@ -39,6 +43,15 @@ export type ErrorResponse = {
   error: string
   message: string
 }
+
+export type EventsResponse = {
+  context: Context
+  events: EventListItem[]
+  calendar: Record<string, EventCalendarDay>
+  categories: EventCategory[]
+  areas: EventArea[]
+  default_areas: number
+} & ErrorResponse
 
 export type BookmarksResponse = {
   context: Context

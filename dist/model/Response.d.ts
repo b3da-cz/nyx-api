@@ -1,4 +1,4 @@
-import { Bookmark, BookmarkCategory, Context, Discussion, DiscussionAccessRight, DiscussionDetail, DiscussionGlobalRights, Domain, LastIgnoredDiscussionsWithName, MailConversation, MailPost, NotepadData, NotepadEntry, Notification, Post, Rating, Reminder, UnifiedSearchRowDiscussion, UploadedFile, User, UsernameSearchResultRow } from './';
+import { Bookmark, BookmarkCategory, Context, Discussion, DiscussionAccessRight, DiscussionDetail, DiscussionGlobalRights, Domain, EventArea, EventCalendarDay, EventCategory, EventListItem, LastIgnoredDiscussionsWithName, MailConversation, MailPost, NotepadData, NotepadEntry, Notification, Post, Rating, Reminder, UnifiedSearchRowDiscussion, UploadedFile, User, UsernameSearchResultRow } from './';
 export declare type Response = {
     bookmarks?: Bookmark[];
     code?: string;
@@ -15,6 +15,14 @@ export declare type ErrorResponse = {
     error: string;
     message: string;
 };
+export declare type EventsResponse = {
+    context: Context;
+    events: EventListItem[];
+    calendar: Record<string, EventCalendarDay>;
+    categories: EventCategory[];
+    areas: EventArea[];
+    default_areas: number;
+} & ErrorResponse;
 export declare type BookmarksResponse = {
     context: Context;
     bookmarks: Array<{

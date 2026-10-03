@@ -416,5 +416,23 @@ class NyxApi extends Http_1.Http {
             });
         });
     }
+    getEvents(params) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const queryParts = [];
+            if ((params === null || params === void 0 ? void 0 : params.area) !== undefined)
+                queryParts.push(`area=${params.area}`);
+            if ((params === null || params === void 0 ? void 0 : params.category) !== undefined)
+                queryParts.push(`category=${params.category}`);
+            if ((params === null || params === void 0 ? void 0 : params.month) !== undefined)
+                queryParts.push(`month=${params.month}`);
+            if ((params === null || params === void 0 ? void 0 : params.year) !== undefined)
+                queryParts.push(`year=${params.year}`);
+            const qs = queryParts.length > 0 ? `?${queryParts.join('&')}` : '';
+            return this.fetch({
+                endpoint: `events${qs}`,
+                method: Http_1.Http.GET,
+            });
+        });
+    }
 }
 exports.NyxApi = NyxApi;

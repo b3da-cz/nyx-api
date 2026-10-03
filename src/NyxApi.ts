@@ -9,6 +9,7 @@ import {
   DiscussionAccessRightResponse,
   DiscussionResponse,
   DiscussionStatsResponse,
+  EventsResponse,
   HistoryResponse,
   LastDiscussionsResponse,
   LastPostsResponse,
@@ -432,6 +433,24 @@ export class NyxApi extends Http {
     const qs = queryParts.length > 0 ? `?${queryParts.join('&')}` : ''
     return this.fetch({
       endpoint: `search-v2${qs}`,
+      method: Http.GET,
+    })
+  }
+
+  async getEvents(params?: {
+    area?: number
+    category?: number
+    month?: number
+    year?: number
+  }): Promise<Partial<EventsResponse>> {
+    const queryParts: string[] = []
+    if (params?.area !== undefined) queryParts.push(`area=${params.area}`)
+    if (params?.category !== undefined) queryParts.push(`category=${params.category}`)
+    if (params?.month !== undefined) queryParts.push(`month=${params.month}`)
+    if (params?.year !== undefined) queryParts.push(`year=${params.year}`)
+    const qs = queryParts.length > 0 ? `?${queryParts.join('&')}` : ''
+    return this.fetch({
+      endpoint: `events${qs}`,
       method: Http.GET,
     })
   }

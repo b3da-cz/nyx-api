@@ -26,6 +26,7 @@ declare export * from "./DomainCategoryParameter";
 declare export * from "./Event";
 declare export * from "./EventAttendee";
 declare export * from "./EventsArea";
+declare export * from "./EventsList";
 declare export * from "./FetchInit";
 declare export * from "./FileEnums";
 declare export * from "./Fn";

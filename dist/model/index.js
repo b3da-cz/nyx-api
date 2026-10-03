@@ -32,6 +32,7 @@ __exportStar(require("./DomainCategoryParameter"), exports);
 __exportStar(require("./Event"), exports);
 __exportStar(require("./EventAttendee"), exports);
 __exportStar(require("./EventsArea"), exports);
+__exportStar(require("./EventsList"), exports);
 __exportStar(require("./FetchInit"), exports);
 __exportStar(require("./FileEnums"), exports);
 __exportStar(require("./Fn"), exports);
