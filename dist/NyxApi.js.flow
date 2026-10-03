@@ -8,6 +8,7 @@ import { Http } from "./Http";
 import {
   AccessRightType,
   ApiNavigationDirection,
+  AttendanceType,
   Auth,
   BookmarksResponse,
   ContentFormatEnum,
@@ -190,4 +191,8 @@ declare export class NyxApi mixins Http {
     year?: number,
     ...
   }): Promise<$Rest<EventsResponse, { ... }>>;
+  setEventAttendance(
+    discussionId: string | number,
+    attendance: AttendanceType
+  ): Promise<$Rest<NyxResponse, { ... }>>;
 }

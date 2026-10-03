@@ -2,6 +2,7 @@ import { Http } from './Http'
 import {
   AccessRightType,
   ApiNavigationDirection,
+  AttendanceType,
   Auth,
   BookmarksResponse,
   ContentFormatEnum,
@@ -452,6 +453,13 @@ export class NyxApi extends Http {
     return this.fetch({
       endpoint: `events${qs}`,
       method: Http.GET,
+    })
+  }
+
+  async setEventAttendance(discussionId: string | number, attendance: AttendanceType): Promise<Partial<NyxResponse>> {
+    return this.fetch({
+      endpoint: `event/${discussionId}/attendance/${attendance}`,
+      method: Http.POST,
     })
   }
 }

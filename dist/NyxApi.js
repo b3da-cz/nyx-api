@@ -434,5 +434,13 @@ class NyxApi extends Http_1.Http {
             });
         });
     }
+    setEventAttendance(discussionId, attendance) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return this.fetch({
+                endpoint: `event/${discussionId}/attendance/${attendance}`,
+                method: Http_1.Http.POST,
+            });
+        });
+    }
 }
 exports.NyxApi = NyxApi;

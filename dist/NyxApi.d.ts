@@ -1,5 +1,5 @@
 import { Http } from './Http';
-import { AccessRightType, ApiNavigationDirection, Auth, BookmarksResponse, ContentFormatEnum, Context, DiscussionAccessRightResponse, DiscussionResponse, DiscussionStatsResponse, EventsResponse, HistoryResponse, LastDiscussionsResponse, LastPostsResponse, MailResponse, NotepadEntryResponse, NotepadResponse, NotificationsResponse, NyxInit, OnPostUpdatedResponse, Post, RatingsResponse, RemindersResponse, Response as NyxResponse, SearchResponse, SearchTextResponse, UploadFileResponse, WaitingFilesResponse } from './model';
+import { AccessRightType, ApiNavigationDirection, AttendanceType, Auth, BookmarksResponse, ContentFormatEnum, Context, DiscussionAccessRightResponse, DiscussionResponse, DiscussionStatsResponse, EventsResponse, HistoryResponse, LastDiscussionsResponse, LastPostsResponse, MailResponse, NotepadEntryResponse, NotepadResponse, NotificationsResponse, NyxInit, OnPostUpdatedResponse, Post, RatingsResponse, RemindersResponse, Response as NyxResponse, SearchResponse, SearchTextResponse, UploadFileResponse, WaitingFilesResponse } from './model';
 export declare class NyxApi extends Http {
     constructor(data: NyxInit);
     /**
@@ -59,4 +59,5 @@ export declare class NyxApi extends Http {
         month?: number;
         year?: number;
     }): Promise<Partial<EventsResponse>>;
+    setEventAttendance(discussionId: string | number, attendance: AttendanceType): Promise<Partial<NyxResponse>>;
 }
